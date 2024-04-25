@@ -14,27 +14,12 @@ import _CG.bean.NiveauType;
 import _CG.bean.ObjectFactory;
 import _CG.bean.TransmissionType;
 import _CG.bean.WorkflowType;
+import _CG.read.constant.ConstantHabilitation;
 
 /**
  * Constructeur de données pour {@link HabilitationType}.
  */
 public class HabilitationBuilder extends ABuilder implements IBuilder {
-
-	/********************************************
-	 * Nom des différentes types d'habilitations.
-	 *******************************************/
-	protected final String SF = "SF";
-	protected final String CO = "CO";
-	protected final String TSF = "TSF";
-	protected final String OTAN = "OTAN";
-	protected final String SF_UE = "SF_UE";
-	protected final String CPR = "CPR";
-	protected final String SD = "SD";
-	protected final String CD = "CD";
-	protected final String SD_CEA = "SD_CEA";
-
-	/** Refus habilitation. */
-	protected final String REFUS = "refus";
 
 	/** Habilitation en cours de construction. */
 	protected HabilitationType mHabilitation;
@@ -55,6 +40,7 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 	public void reset() {
 		this.mHabilitation = mFabrique.createHabilitationType();
 		this.mWorkflowType = mFabrique.createWorkflowType();
+		this.isToAdded = true;
 	}
 
 	/**
@@ -72,8 +58,7 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 	 * @param cell Cellule où l'on va récupérer la'information.
 	 */
 	public void setNumeroInterne(HSSFCell cell) {
-		this.mHabilitation.setNumeroInterne(getStringFromCell(cell));
-
+		this.mHabilitation.setNumeroInterne(getStringFromCellWithoutCarriageReturn(cell));
 	}
 
 	/**
@@ -82,7 +67,7 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 	 * @param cell Cellule où l'on va récupérer la'information.
 	 */
 	public void setNumeroSophia(HSSFCell cell) {
-		this.mHabilitation.setNumeroSophia(getStringFromCell(cell));
+		this.mHabilitation.setNumeroSophia(getStringFromCellWithoutCarriageReturn(cell));
 	}
 
 	/**
@@ -94,33 +79,36 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 		String cellValue = getStringFromCell(cell);
 
 		switch (cellValue) {
-		case SF:
+		case ConstantHabilitation.SF:
 			this.mHabilitation.setNature(NatureType.FRANCE);
 			this.mHabilitation.setNiveau(NiveauType.SECRET);
 			break;
-		case CO:
+		case ConstantHabilitation.CO:
 			this.mHabilitation.setNature(NatureType.OTAN);
 			this.mHabilitation.setNiveau(NiveauType.CONFIDENTIEL);
 			break;
-		case TSF:
+		case ConstantHabilitation.TSF:
 			this.mHabilitation.setNature(NatureType.FRANCE);
 			this.mHabilitation.setNiveau(NiveauType.TRES_SECRET);
 			break;
-		case SF_UE:
+		case ConstantHabilitation.OTAN:
+			this.mHabilitation.setNature(NatureType.OTAN);
+			this.mHabilitation.setNiveau(NiveauType.CONFIDENTIEL);
+			break;
+		case ConstantHabilitation.SF_UE:
 			this.mHabilitation.setNature(NatureType.UNION_EUROPEENNE);
 			this.mHabilitation.setNiveau(NiveauType.SECRET);
 			break;
-		case SD:
+		case ConstantHabilitation.SD:
 			this.mHabilitation.setNature(NatureType.DEFENSE);
 			this.mHabilitation.setNiveau(NiveauType.SECRET);
 			break;
-		case CD:
+		case ConstantHabilitation.CD:
 			this.mHabilitation.setNature(NatureType.DEFENSE);
 			this.mHabilitation.setNiveau(NiveauType.CONFIDENTIEL);
 			break;
-		case OTAN:
-		case CPR:
-		case SD_CEA:
+		case ConstantHabilitation.CPR:
+		case ConstantHabilitation.SD_CEA:
 			// NE fait rien
 			break;
 		default:
@@ -170,12 +158,13 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 			if (new Date(date).after(new Date())) {
 				this.mHabilitation.setActif(true);
 			} else {
-				this.mHabilitation.setActif(false);
+				this.isToAdded = false;
 			}
 		} else if (cell.getCellType() == CellType.STRING) {
 			String currentValue = getStringFromCell(cell);
 			if (!currentValue.isBlank()
-					&& StringUtils.indexOfIgnoreCase(StringUtils.stripAccents(currentValue), REFUS) != -1) {
+					&& StringUtils.indexOfIgnoreCase(StringUtils.stripAccents(currentValue),
+							ConstantHabilitation.REFUS) != -1) {
 				this.mHabilitation.setAvis(AvisHabilitationType.REFUS);
 			}
 			this.mHabilitation.setActif(false);

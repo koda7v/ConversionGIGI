@@ -9,11 +9,13 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
+import _CG.bean.DacssiType;
 import _CG.bean.EntrepriseType;
 import _CG.bean.GiraphixDatas;
 import _CG.bean.HabilitationType;
 import _CG.bean.ObjectFactory;
 import _CG.bean.PersonneType;
+import _CG.read.builder.DacsiiBuilder;
 import _CG.read.builder.EntrepriseBuilder;
 import _CG.read.builder.GiraphixDataBuilder;
 import _CG.read.builder.HabilitationBuilder;
@@ -35,6 +37,8 @@ public class CGReader implements ICGReader {
 	protected HabilitationBuilder mHabilitationBuilder;
 	/** Constructeur des données {@link EntrepriseType} de giraphix. */
 	protected EntrepriseBuilder mEntrepriseBuilder;
+	/** Constructeur des données {@link DacssiType} de giraphix. */
+	protected DacsiiBuilder mDacsiiBuilder;
 
 	/************************
 	 * Lecteur de pages Excel.
@@ -61,10 +65,11 @@ public class CGReader implements ICGReader {
 		this.mPersonneBuilder = new PersonneBuilder(mFabrique);
 		this.mHabilitationBuilder = new HabilitationBuilder(mFabrique);
 		this.mEntrepriseBuilder = new EntrepriseBuilder(mFabrique);
+		this.mDacsiiBuilder = new DacsiiBuilder(mFabrique);
 
 		this.mHabilitationReader = new HabilitationPageReader(mGiraphixBuilder, mPersonneBuilder, mHabilitationBuilder,
 				mEntrepriseBuilder);
-		this.mDacsiiReader = new DacsiiPageReader(mGiraphixBuilder, mPersonneBuilder, mHabilitationBuilder,
+		this.mDacsiiReader = new DacsiiPageReader(mGiraphixBuilder, mPersonneBuilder, mDacsiiBuilder,
 				mEntrepriseBuilder);
 	}
 

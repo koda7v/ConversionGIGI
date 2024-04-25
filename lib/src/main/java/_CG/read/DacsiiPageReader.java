@@ -12,9 +12,9 @@ import org.apache.poi.ss.usermodel.Row;
 import _CG.bean.EntrepriseType;
 import _CG.bean.HabilitationType;
 import _CG.bean.PersonneType;
+import _CG.read.builder.DacsiiBuilder;
 import _CG.read.builder.EntrepriseBuilder;
 import _CG.read.builder.GiraphixDataBuilder;
-import _CG.read.builder.HabilitationBuilder;
 import _CG.read.builder.IBuilder;
 import _CG.read.builder.PersonneBuilder;
 import _CG.read.constant.ConstantSheetDacsii;
@@ -27,27 +27,27 @@ public class DacsiiPageReader extends ACGSheetReader implements ICGSheetReader {
 	/** Constructeur des données {@link PersonneType} de giraphix. */
 	protected PersonneBuilder mPersonneBuilder;
 	/** Constructeur des données {@link HabilitationType} de giraphix. */
-	protected HabilitationBuilder mHabilitationBuilder;
+	protected DacsiiBuilder mDacsiiBuilder;
 	/** Constructeur des données {@link EntrepriseType} de giraphix. */
 	protected EntrepriseBuilder mEntrepriseBuilder;
 
 	/**
 	 * Constructeur.
 	 * 
-	 * @param giraphixBuilder
-	 * 
+	 * @param giraphixBuilder     Constructeur des données de haut niveau de
+	 *                            giraphix.
 	 * @param personneBuilder     Constructeur des données {@link PersonneType} de
+	 *                            giraphix.
+	 * @param entrepriseBuilder   Constructeur des données {@link EntrepriseType} de
 	 *                            giraphix.
 	 * @param habilitationBuilder Constructeur des données {@link HabilitationType}
 	 *                            de giraphix.
-	 * @param entrepriseBuilder   Constructeur des données {@link EntrepriseType} de
-	 *                            giraphix.
 	 */
 	public DacsiiPageReader(GiraphixDataBuilder giraphixBuilder, PersonneBuilder personneBuilder,
-			HabilitationBuilder habilitationBuilder, EntrepriseBuilder entrepriseBuilder) {
+			DacsiiBuilder dacsiiBuilder, EntrepriseBuilder entrepriseBuilder) {
 		super(giraphixBuilder);
 		this.mPersonneBuilder = personneBuilder;
-		this.mHabilitationBuilder = habilitationBuilder;
+		this.mDacsiiBuilder = dacsiiBuilder;
 		this.mEntrepriseBuilder = entrepriseBuilder;
 	}
 
@@ -76,64 +76,79 @@ public class DacsiiPageReader extends ACGSheetReader implements ICGSheetReader {
 	 */
 	@Override
 	protected void readRow(HSSFRow row) {
-		int index = 1;
-		resetValue();
+		
+		if (checkCellValue(ConstantSheetDacsii.INDEX_NOM, row)) {
+			int index = 1;
+			resetValue();
 
-		String personneID = UUID.randomUUID().toString();
-		mPersonneBuilder.setId(personneID);
+			String personneID = UUID.randomUUID().toString();
+			mPersonneBuilder.setId(personneID);
+			
+			Iterator<Cell> cellIter = row.cellIterator();
+			while (cellIter.hasNext()) {
 
-		mHabilitationBuilder.setIDPersonne(personneID);
+				// Récupération de la cellule
+				HSSFCell cell = (HSSFCell) cellIter.next();
 
-		Iterator<Cell> cellIter = row.cellIterator();
-		while (cellIter.hasNext()) {
-
-			// Récupération de la cellule
-			HSSFCell cell = (HSSFCell) cellIter.next();
-
-			switch (index) {
-			case ConstantSheetDacsii.INDEX_REFERENCE_APSIDE:
-				mHabilitationBuilder.setNumeroInterne(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_REFERENCE_SOPHIA:
-				mHabilitationBuilder.setNumeroSophia(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_NOM:
-				mPersonneBuilder.setNomPrenom(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_AGENCE_RATTACHEMENT:
-				// mEntrepriseBuilder.setAgenceRattachement(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_TYPE_HABILITATION:
-				mHabilitationBuilder.setTypeHabilitation(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_DATE_NAISSANCE:
-				mPersonneBuilder.setDateNaissance(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_FONCTION:
-				mPersonneBuilder.setFonction(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_DATE_ENVOI_DIRPSD:
-				mHabilitationBuilder.setDateEnvoiDIRPSD(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_DATE_RETOUR_DECISION:
-				mHabilitationBuilder.setDateRetourDecision(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_VALIDITE_HABILITATION:
-				mHabilitationBuilder.setValiditeHabilitation(cell);
-				break;
-			case ConstantSheetDacsii.INDEX_CLIENT:
-			case ConstantSheetDacsii.INDEX_NUMERO_HABILITATION:
-			case ConstantSheetDacsii.INDEX_DOSSIER_SUIVI:
-				// Non pris en compte
-				break;
-			default:
-				break;
+				switch (index) {
+				case ConstantSheetDacsii.INDEX_REFERENCE_APSIDE:
+					mDacsiiBuilder.setNumeroInterne(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_REFERENCE_SOPHIA:
+					mDacsiiBuilder.setNumeroSophia(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_NOM:
+					mPersonneBuilder.setNomPrenom(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_AGENCE_RATTACHEMENT:
+					// mEntrepriseBuilder.setAgenceRattachement(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_TYPE_HABILITATION:
+					mDacsiiBuilder.setTypeHabilitation(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_DATE_NAISSANCE:
+					mPersonneBuilder.setDateNaissance(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_FONCTION:
+					mPersonneBuilder.setFonction(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_DATE_ENVOI_DIRPSD:
+					mDacsiiBuilder.setDateEnvoiDIRPSD(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_DATE_RETOUR_DECISION:
+					mDacsiiBuilder.setDateRetourDecision(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_VALIDITE_HABILITATION:
+					mDacsiiBuilder.setValiditeHabilitation(cell);
+					break;
+				case ConstantSheetDacsii.INDEX_CLIENT:
+				case ConstantSheetDacsii.INDEX_NUMERO_HABILITATION:
+				case ConstantSheetDacsii.INDEX_DOSSIER_SUIVI:
+					// Non pris en compte
+					break;
+				default:
+					break;
+				}
+				index++;
 			}
-			index++;
-		}
 
-		this.mGiraphixBuilder.addHabilitation(mHabilitationBuilder.getHabilitation());
-		this.mGiraphixBuilder.addPersonne(mPersonneBuilder.getPersonne());
+			if (this.mDacsiiBuilder.isEntityToAdded()) {
+				String goodID = this.mGiraphixBuilder
+						.verifiesPresenceOfPersonneAndGetGoodID(mPersonneBuilder.getPersonne());
+
+				// Si une ID est déjà présente
+				if (!personneID.equals(goodID)) {
+					// On associe le DACSSI à la personne déjà existante
+					this.mDacsiiBuilder.setIDPersonne(goodID);
+				} else {
+					// Sinon on l'ajoute
+					this.mDacsiiBuilder.setIDPersonne(personneID);
+					this.mGiraphixBuilder.addPersonne(mPersonneBuilder.getPersonne());
+				}
+
+				this.mGiraphixBuilder.addDacsii(mDacsiiBuilder.getDacssi());
+			}
+		}
 	}
 
 	/**
@@ -143,7 +158,7 @@ public class DacsiiPageReader extends ACGSheetReader implements ICGSheetReader {
 	@Override
 	protected void resetValue() {
 		mPersonneBuilder.reset();
-		mHabilitationBuilder.reset();
+		mDacsiiBuilder.reset();
 	}
 
 }

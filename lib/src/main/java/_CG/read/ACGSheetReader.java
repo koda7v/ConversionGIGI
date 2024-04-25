@@ -1,6 +1,8 @@
 package _CG.read;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.ss.usermodel.CellType;
 
 import _CG.read.builder.GiraphixDataBuilder;
 import _CG.read.builder.IBuilder;
@@ -23,6 +25,12 @@ public abstract class ACGSheetReader {
 	}
 
 	/**
+	 * Permet la reinitialisation des {@link IBuilder} permettant la création des
+	 * objets.
+	 */
+	abstract void resetValue();
+
+	/**
 	 * Lecture d'une ligne. Gestion de chaque cellule à partir des colonnes.
 	 * 
 	 * @param row {@link HSSFRow}.
@@ -30,8 +38,14 @@ public abstract class ACGSheetReader {
 	abstract void readRow(HSSFRow row);
 
 	/**
-	 * Permet la reinitialisation des {@link IBuilder} permettant la création des
-	 * objets.
+	 * Vérifie l'authenticité d'une row.
+	 * 
+	 * @param row Ligne sur laquelle on travaille.
+	 * @return True, s'il y a une valeur dans la cellule.
 	 */
-	abstract void resetValue();
+	protected boolean checkCellValue(int cellIndexToCHeck, HSSFRow row) {
+		HSSFCell cell = row.getCell(cellIndexToCHeck);
+		return cell != null && cell.getCellType() != CellType.BLANK;
+	}
+
 }

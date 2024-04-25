@@ -18,7 +18,7 @@ public class EntrepriseBuilder extends ABuilder implements IBuilder {
 	/** Entreprise courante en cours de création. */
 	protected EntrepriseType mEntreprise;
 	/** L'entreprise est-elle à ajouter ? */
-	protected boolean isToAdded = false;
+	protected boolean isToAdded;
 
 	/**
 	 * Constructeur.
@@ -36,6 +36,7 @@ public class EntrepriseBuilder extends ABuilder implements IBuilder {
 		this.mEntreprise = mFabrique.createEntrepriseType();
 
 		this.createBordeauxEntreprise();
+		this.isToAdded = true;
 	}
 
 	/**
@@ -112,12 +113,4 @@ public class EntrepriseBuilder extends ABuilder implements IBuilder {
 	public EntrepriseType getEntreprise() {
 		return this.mEntreprise;
 	}
-
-	/**
-	 * @return Est-ce que l'entreprise est à ajouter.
-	 */
-	public boolean isEntrepriseToAdded() {
-		return this.isToAdded;
-	}
-
 }

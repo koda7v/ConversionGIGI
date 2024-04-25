@@ -4,6 +4,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.JFileChooser;
+
 import _CG.bean.GiraphixDatas;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -46,7 +48,21 @@ public class CGWriter implements ICGWriter {
 			SimpleDateFormat formater = new SimpleDateFormat(EXPORT_DATE_FORMAT);
 
 			// Ecriture du fichier
-			marshaller.marshal(mDatas, new File(EXPORT_TITLE_NAME + formater.format(date) + EXPORT_EXTENSION));
+			JFileChooser chooser = new JFileChooser();
+			chooser.setDialogTitle("Enregistrer sous :");
+			chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+			if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+
+				// Fichier sélectionné
+				File selectedFile = chooser.getSelectedFile();
+
+				// Vérification des droits
+				if (selectedFile.canWrite()) {
+					marshaller.marshal(mDatas, new File(selectedFile.getPath() + File.separator + EXPORT_TITLE_NAME
+							+ formater.format(date) + EXPORT_EXTENSION));
+				}
+			}
 
 		} catch (JAXBException e) {
 			System.err.println("Problème de création du contexte JAXB. \n" + e.getMessage());

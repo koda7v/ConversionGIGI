@@ -79,74 +79,91 @@ public class HabilitationPageReader extends ACGSheetReader implements ICGSheetRe
 	 */
 	@Override
 	protected void readRow(HSSFRow row) {
-		int index = 1;
-		resetValue();
 
-		String personneID = UUID.randomUUID().toString();
-		mPersonneBuilder.setId(personneID);
+		// Chaque ligne doit être lié à une personne si la cellule n'est pas renseigné
+		// on ne prends pas en compte la ligne.
+		if (checkCellValue(ConstantSheetHabilitation.INDEX_NOM, row)) {
+			int index = 1;
+			resetValue();
 
-		mHabilitationBuilder.setIDPersonne(personneID);
+			String personneID = UUID.randomUUID().toString();
+			mPersonneBuilder.setId(personneID);
 
-		Iterator<Cell> cellIter = row.cellIterator();
-		while (cellIter.hasNext()) {
+			Iterator<Cell> cellIter = row.cellIterator();
+			while (cellIter.hasNext()) {
 
-			// Récupération de la cellule
-			HSSFCell cell = (HSSFCell) cellIter.next();
+				// Récupération de la cellule
+				HSSFCell cell = (HSSFCell) cellIter.next();
 
-			switch (index) {
-			case ConstantSheetHabilitation.INDEX_CODE_SOPHIA:
-				mHabilitationBuilder.setNumeroInterne(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_REFERENCE_SOPHIA:
-				mHabilitationBuilder.setNumeroSophia(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_NOM:
-				mPersonneBuilder.setNomPrenom(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_AGENCE_RATTACHEMENT:
-				// mEntrepriseBuilder.setAgenceRattachement(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_TYPE_HABILITATION:
-				mHabilitationBuilder.setTypeHabilitation(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_DATE_NAISSANCE:
-				mPersonneBuilder.setDateNaissance(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_FONCTION:
-				mPersonneBuilder.setFonction(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_DATE_ENVOI_DIRPSD:
-				mHabilitationBuilder.setDateEnvoiDIRPSD(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_DATE_RETOUR_DECISION:
-				mHabilitationBuilder.setDateRetourDecision(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_RETOUR_ENGAGEMENT_RESPONSABILITE:
-				mHabilitationBuilder.setRetourEngagementResponsabiliteSigne(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_VALIDITE_HABILITATION:
-				mHabilitationBuilder.setValiditeHabilitation(cell);
-				break;
-			case ConstantSheetHabilitation.INDEX_CLIENT:
-			case ConstantSheetHabilitation.INDEX_DATE_ENVOI_83B:
-			case ConstantSheetHabilitation.INDEX_DATE_RECEPTION83B:
-			case ConstantSheetHabilitation.INDEX_ENVOI_ENGAGEMENT_RESPONSABILITE:
-			case ConstantSheetHabilitation.INDEX_DATE_RETOUR_SENSIBILITE:
-			case ConstantSheetHabilitation.INDEX_NUMERO_HABILITATION:
-			case ConstantSheetHabilitation.INDEX_AR_ENVOYE_COMMENTAIRE:
-			case ConstantSheetHabilitation.INDEX_DOSSIER_SUIVI:
-			case ConstantSheetHabilitation.INDEX_COMMENTAIRE:
-			case ConstantSheetHabilitation.INDEX_VOLET_2_ENVOYE:
-				// Non pris en compte
-				break;
-			default:
-				break;
+				switch (index) {
+				case ConstantSheetHabilitation.INDEX_CODE_SOPHIA:
+					mHabilitationBuilder.setNumeroInterne(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_REFERENCE_SOPHIA:
+					mHabilitationBuilder.setNumeroSophia(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_NOM:
+					mPersonneBuilder.setNomPrenom(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_AGENCE_RATTACHEMENT:
+					// mEntrepriseBuilder.setAgenceRattachement(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_TYPE_HABILITATION:
+					mHabilitationBuilder.setTypeHabilitation(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_DATE_NAISSANCE:
+					mPersonneBuilder.setDateNaissance(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_FONCTION:
+					mPersonneBuilder.setFonction(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_DATE_ENVOI_DIRPSD:
+					mHabilitationBuilder.setDateEnvoiDIRPSD(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_DATE_RETOUR_DECISION:
+					mHabilitationBuilder.setDateRetourDecision(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_RETOUR_ENGAGEMENT_RESPONSABILITE:
+					mHabilitationBuilder.setRetourEngagementResponsabiliteSigne(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_VALIDITE_HABILITATION:
+					mHabilitationBuilder.setValiditeHabilitation(cell);
+					break;
+				case ConstantSheetHabilitation.INDEX_CLIENT:
+				case ConstantSheetHabilitation.INDEX_DATE_ENVOI_83B:
+				case ConstantSheetHabilitation.INDEX_DATE_RECEPTION83B:
+				case ConstantSheetHabilitation.INDEX_ENVOI_ENGAGEMENT_RESPONSABILITE:
+				case ConstantSheetHabilitation.INDEX_DATE_RETOUR_SENSIBILITE:
+				case ConstantSheetHabilitation.INDEX_NUMERO_HABILITATION:
+				case ConstantSheetHabilitation.INDEX_AR_ENVOYE_COMMENTAIRE:
+				case ConstantSheetHabilitation.INDEX_DOSSIER_SUIVI:
+				case ConstantSheetHabilitation.INDEX_COMMENTAIRE:
+				case ConstantSheetHabilitation.INDEX_VOLET_2_ENVOYE:
+					// Non pris en compte
+					break;
+				default:
+					break;
+				}
+				index++;
 			}
-			index++;
-		}
 
-		this.mGiraphixBuilder.addHabilitation(mHabilitationBuilder.getHabilitation());
-		this.mGiraphixBuilder.addPersonne(mPersonneBuilder.getPersonne());
+			if (this.mHabilitationBuilder.isEntityToAdded()) {
+				String goodID = this.mGiraphixBuilder
+						.verifiesPresenceOfPersonneAndGetGoodID(mPersonneBuilder.getPersonne());
+
+				// Si une ID est déjà présente
+				if (!personneID.equals(goodID)) {
+					// On associe le DACSSI à la personne déjà existante
+					this.mHabilitationBuilder.setIDPersonne(goodID);
+				} else {
+					// Sinon on l'ajoute
+					this.mHabilitationBuilder.setIDPersonne(personneID);
+					this.mGiraphixBuilder.addPersonne(mPersonneBuilder.getPersonne());
+				}
+
+				this.mGiraphixBuilder.addHabilitation(mHabilitationBuilder.getHabilitation());
+			}
+		}
 	}
 
 	/**

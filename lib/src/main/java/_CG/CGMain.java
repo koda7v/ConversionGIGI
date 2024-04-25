@@ -3,6 +3,7 @@ package _CG;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import _CG.read.CGReader;
@@ -25,38 +26,45 @@ public class CGMain {
 	public void launch() {
 
 		// Initialisation de la boîte de dialogue permettant de choisir le fichier
-		JFileChooser chooser = new JFileChooser();
-		chooser.setDialogTitle(JFILECHOOSER_TITLE);
-		chooser.setAcceptAllFileFilterUsed(false);
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(DESCRIPTION_EXTENSION_FILTER, EXTENSION_FILTER);
-		chooser.addChoosableFileFilter(filter);
+			JFileChooser chooser = new JFileChooser();
+			chooser.setDialogTitle(JFILECHOOSER_TITLE);
+			chooser.setAcceptAllFileFilterUsed(false);
 
-	    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) { 
+			FileNameExtensionFilter filter = new FileNameExtensionFilter(DESCRIPTION_EXTENSION_FILTER,
+					EXTENSION_FILTER);
+			chooser.addChoosableFileFilter(filter);
 
-			// Fichier sélectionné
-			File selectedFile = chooser.getSelectedFile();
+			if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 
-			// Vérification des droits
-			if (selectedFile.canRead()) {
+				// Fichier sélectionné
+				File selectedFile = chooser.getSelectedFile();
 
-				// Vérification de l'extension du fichier.
-				if (checkExtension(selectedFile)) {
+				// Vérification des droits
+				if (selectedFile.canRead()) {
 
-					ICGReader reader = new CGReader(selectedFile);
+					// Vérification de l'extension du fichier.
+					if (checkExtension(selectedFile)) {
 
-					// Lecture du fichier
-					reader.readXLS();
+						ICGReader reader = new CGReader(selectedFile);
 
-					// Récupération des données
-					ICGWriter writer = new CGWriter(reader.getDatas());
+						// Lecture du fichier
+						reader.readXLS();
 
-					// Ecriture du XML
-					writer.writeXML();
+						// Récupération des données
+						ICGWriter writer = new CGWriter(reader.getDatas());
+
+						// Ecriture du XML
+						writer.writeXML();
+					}
 				}
+			} else {
+				System.out.println("No Selection ");
 			}
-		} else {
-			System.out.println("No Selection ");
+		} catch (Throwable ex) {
+			System.out.println("Soucis avec le look and feel ");
 		}
 	}
 
