@@ -1,0 +1,63 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    jaxb
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+    api 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'com.google.guava:guava:31.1-jre'
+    
+    // POI
+    implementation group: 'org.apache.poi', name: 'poi', version: '5.2.5'
+    
+    // JAXB
+    implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.2'
+	implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '4.0.5'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.14.0'
+
+	  jaxb 'com.sun.xml.bind:jaxb-impl:4.0.5'
+      jaxb 'com.sun.xml.bind:jaxb-xjc:4.0.5'
+	  jaxb 'com.sun.xml.bind:jaxb-osgi:4.0.5'
+	  jaxb 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(19)
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+
+
+task generateJaxb {
+    description 'Génération des classes du XSD'
+    group 'xsd'
+
+    ext.generatedDir = file("src/main/java")
+
+    inputs.dir 'src/main/resources'
+    outputs.dir generatedDir
+
+    doLast {
+        ant {
+            taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.jaxb.asPath)
+
+            xjc(destdir: generatedDir, package: '_CG.bean', schema: 'src/main/resources/giraphix.xsd') {
+                arg(value: '-wsdl')
+            }
+        }
+    }
+}
+
