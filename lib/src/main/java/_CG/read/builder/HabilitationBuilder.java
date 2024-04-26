@@ -84,6 +84,7 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 			this.mHabilitation.setNiveau(NiveauType.SECRET);
 			break;
 		case ConstantHabilitation.CO:
+		case ConstantHabilitation.OTAN:
 			this.mHabilitation.setNature(NatureType.OTAN);
 			this.mHabilitation.setNiveau(NiveauType.CONFIDENTIEL);
 			break;
@@ -91,15 +92,12 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 			this.mHabilitation.setNature(NatureType.FRANCE);
 			this.mHabilitation.setNiveau(NiveauType.TRES_SECRET);
 			break;
-		case ConstantHabilitation.OTAN:
-			this.mHabilitation.setNature(NatureType.OTAN);
-			this.mHabilitation.setNiveau(NiveauType.CONFIDENTIEL);
-			break;
 		case ConstantHabilitation.SF_UE:
 			this.mHabilitation.setNature(NatureType.UNION_EUROPEENNE);
 			this.mHabilitation.setNiveau(NiveauType.SECRET);
 			break;
 		case ConstantHabilitation.SD:
+		case ConstantHabilitation.SD_CEA:
 			this.mHabilitation.setNature(NatureType.DEFENSE);
 			this.mHabilitation.setNiveau(NiveauType.SECRET);
 			break;
@@ -108,7 +106,6 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 			this.mHabilitation.setNiveau(NiveauType.CONFIDENTIEL);
 			break;
 		case ConstantHabilitation.CPR:
-		case ConstantHabilitation.SD_CEA:
 			// NE fait rien
 			break;
 		default:

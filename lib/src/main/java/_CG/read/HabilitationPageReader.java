@@ -34,7 +34,8 @@ public class HabilitationPageReader extends ACGSheetReader implements ICGSheetRe
 	/**
 	 * Constructeur.
 	 * 
-	 * @param giraphixBuilder
+	 * @param giraphixBuilder     Constructeur des données de haut niveau de
+	 *                            giraphix.
 	 * 
 	 * @param personneBuilder     Constructeur des données {@link PersonneType} de
 	 *                            giraphix.
@@ -103,10 +104,10 @@ public class HabilitationPageReader extends ACGSheetReader implements ICGSheetRe
 					mHabilitationBuilder.setNumeroSophia(cell);
 					break;
 				case ConstantSheetHabilitation.INDEX_NOM:
-					mPersonneBuilder.setNomPrenom(cell);
+					mPersonneBuilder.setNom(cell);
 					break;
-				case ConstantSheetHabilitation.INDEX_AGENCE_RATTACHEMENT:
-					// mEntrepriseBuilder.setAgenceRattachement(cell);
+				case ConstantSheetHabilitation.INDEX_PRENOM:
+					mPersonneBuilder.setPrenom(cell);
 					break;
 				case ConstantSheetHabilitation.INDEX_TYPE_HABILITATION:
 					mHabilitationBuilder.setTypeHabilitation(cell);
@@ -129,6 +130,7 @@ public class HabilitationPageReader extends ACGSheetReader implements ICGSheetRe
 				case ConstantSheetHabilitation.INDEX_VALIDITE_HABILITATION:
 					mHabilitationBuilder.setValiditeHabilitation(cell);
 					break;
+				case ConstantSheetHabilitation.INDEX_AGENCE_RATTACHEMENT:
 				case ConstantSheetHabilitation.INDEX_CLIENT:
 				case ConstantSheetHabilitation.INDEX_DATE_ENVOI_83B:
 				case ConstantSheetHabilitation.INDEX_DATE_RECEPTION83B:

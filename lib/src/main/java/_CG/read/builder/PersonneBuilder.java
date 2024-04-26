@@ -1,7 +1,6 @@
 package _CG.read.builder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -81,40 +80,6 @@ public class PersonneBuilder extends ABuilder implements IBuilder {
 	}
 
 	/**
-	 * Affectation du nom et prénom.
-	 * 
-	 * @param cell Cellule où l'on va récupérer la'information.
-	 */
-	public void setNomPrenom(HSSFCell cell) {
-		// Voir pour les nom à rallonge
-
-		String[] split = getStringFromCell(cell).split("\\s+");
-
-		if (split.length == 2) {
-			// Classique NOM Prenom
-			this.mPersonne.setNom(split[0]);
-			this.mPersonne.setPrenom(split[1]);
-
-		} else if (split.length == 1) {
-			// SI une valeur trouvé, on considère que c'est le nom
-			this.mPersonne.setNom(split[0]);
-
-		} else if (split.length > 2) {
-			// Si plus on gère les prénoms multiple.
-			this.mPersonne.setNom(split[0]);
-
-			// On considère que le reste des mots font parties du prénom
-			List<String> allPrenom = new ArrayList<>(Arrays.asList(split));
-
-			// Suppression du nom
-			allPrenom.remove(0);
-
-			// Ajout du prénom
-			this.mPersonne.setPrenom(String.join(" ", allPrenom));
-		}
-	}
-
-	/**
 	 * Affectation de la date de naissance.
 	 * 
 	 * @param cell Cellule où l'on va récupérer la'information.
@@ -124,6 +89,24 @@ public class PersonneBuilder extends ABuilder implements IBuilder {
 		if (dateFromCell != 0) {
 			this.mPersonne.setDateDeNaissance(dateFromCell);
 		}
+	}
+
+	/**
+	 * Affectation du nom.
+	 * 
+	 * @param cell Cellule où l'on va récupérer la'information.
+	 */
+	public void setNom(HSSFCell cell) {
+		this.mPersonne.setNom(getStringFromCell(cell));
+	}
+
+	/**
+	 * Affectation du prénom.
+	 * 
+	 * @param cell Cellule où l'on va récupérer la'information.
+	 */
+	public void setPrenom(HSSFCell cell) {
+		this.mPersonne.setPrenom(getStringFromCell(cell));
 	}
 
 	/**

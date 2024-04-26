@@ -7,6 +7,7 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 
 import _CG.bean.EntrepriseType;
 import _CG.bean.ObjectFactory;
+import _CG.read.constant.ConstantEntreprise;
 
 /**
  * Constructeur de données pour {@link EntrepriseType}.
@@ -82,11 +83,11 @@ public class EntrepriseBuilder extends ABuilder implements IBuilder {
 	protected void createBordeauxEntreprise() {
 		String idEntreprise = UUID.randomUUID().toString();
 
-		mEntreprise.setNom("Apside");
-		mEntreprise.setLocalite("Bordeaux");
-		mEntreprise.setAdresse("Immeuble Managers St Jean, 23 Quai de Paludate Bâtiment A");
-		mEntreprise.setCodePostal("33800");
-		mEntreprise.setCodeSE("");
+		mEntreprise.setNom(ConstantEntreprise.APSIDE_NAME);
+		mEntreprise.setLocalite(ConstantEntreprise.LOCALITE_NAME);
+		mEntreprise.setAdresse(ConstantEntreprise.ADRESSE_NAME);
+		mEntreprise.setCodePostal(ConstantEntreprise.CODE_POSTAL_NAME);
+		mEntreprise.setCodeSE(ConstantEntreprise.CODE_SE_NAME);
 
 		mEntrepriseCreated.put(idEntreprise, mEntreprise);
 	}

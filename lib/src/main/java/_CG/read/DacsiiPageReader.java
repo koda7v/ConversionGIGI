@@ -98,10 +98,10 @@ public class DacsiiPageReader extends ACGSheetReader implements ICGSheetReader {
 					mDacsiiBuilder.setNumeroSophia(cell);
 					break;
 				case ConstantSheetDacsii.INDEX_NOM:
-					mPersonneBuilder.setNomPrenom(cell);
+					mPersonneBuilder.setNom(cell);
 					break;
-				case ConstantSheetDacsii.INDEX_AGENCE_RATTACHEMENT:
-					// mEntrepriseBuilder.setAgenceRattachement(cell);
+				case ConstantSheetDacsii.INDEX_PRENOM:
+					mPersonneBuilder.setPrenom(cell);
 					break;
 				case ConstantSheetDacsii.INDEX_TYPE_HABILITATION:
 					mDacsiiBuilder.setTypeHabilitation(cell);
@@ -121,6 +121,7 @@ public class DacsiiPageReader extends ACGSheetReader implements ICGSheetReader {
 				case ConstantSheetDacsii.INDEX_VALIDITE_HABILITATION:
 					mDacsiiBuilder.setValiditeHabilitation(cell);
 					break;
+				case ConstantSheetDacsii.INDEX_AGENCE_RATTACHEMENT:
 				case ConstantSheetDacsii.INDEX_CLIENT:
 				case ConstantSheetDacsii.INDEX_NUMERO_HABILITATION:
 				case ConstantSheetDacsii.INDEX_DOSSIER_SUIVI:

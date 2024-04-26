@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="giraphix" xmlns="giraphix" elementFormDefault="qualified">
+   
+  <!-- Civilité PERSONNE / USER -->
+  <xs:simpleType name="civiliteType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="M" />
+      <xs:enumeration value="MME" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Mail Sophia WORKFLOW -->
+  <xs:complexType name="mailSophiaType">
+    <xs:sequence>
+      <xs:element name="Sujet" type="xs:string" />
+      <xs:element name="Corps" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- TRANSMISSION WORKFLOW -->
+  <xs:complexType name="transmissionType">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- RECEPTION WORKFLOW -->
+  <xs:complexType name="receptionType">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:long"/>
+      <xs:element name="Mail" type="mailSophiaType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ENQUETE WORKFLOW -->
+  <xs:complexType name="enqueteType">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:long"/>
+      <xs:element name="Mail" type="mailSophiaType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- AVIS WORKFLOW -->
+  <xs:complexType name="avisWorkflowType">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:long"/>
+      <xs:element name="Mail" type="mailSophiaType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- DECISION WORKFLOW -->
+  <xs:complexType name="decisionType">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:long" minOccurs="0"/>
+      <xs:element name="Mail" type="mailSophiaType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+         
+  <!-- CLOS WORKFLOW -->
+  <xs:complexType name="closType">
+    <xs:sequence>
+      <xs:element name="Date" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+ 
+  <!-- WORKFLOW -->
+  <xs:complexType name="workflowType">
+    <xs:sequence>
+      <xs:element name="Transmission" type="transmissionType" minOccurs="0"/>
+      <xs:element name="Reception" type="receptionType" minOccurs="0"/>
+      <xs:element name="Enquete" type="enqueteType" minOccurs="0"/>
+      <xs:element name="Avis" type="avisWorkflowType" minOccurs="0"/>
+      <xs:element name="Decision" type="decisionType" minOccurs="0"/>
+      <xs:element name="Clos" type="closType" minOccurs="0"/>   
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!-- ETAT HABILITATION -->
+  <xs:simpleType name="etatType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NON_TRANSMISE" />
+      <xs:enumeration value="TRANSMISE" />
+      <xs:enumeration value="RECUE" />
+      <xs:enumeration value="ENQUETE" />
+      <xs:enumeration value="AVIS" />
+      <xs:enumeration value="DECISION" />
+      <xs:enumeration value="ENGAGEMENT" />
+      <xs:enumeration value="CLOS" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- MOTIF HABILITATION -->
+  <xs:simpleType name="motifType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ADMISSION" />
+      <xs:enumeration value="RENOUVELLEMENT" />
+      <xs:enumeration value="REVISION" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- NIVEAU HABILITATION -->
+  <xs:simpleType name="niveauType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CONFIDENTIEL" />
+      <xs:enumeration value="SECRET" />
+      <xs:enumeration value="TRES_SECRET" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Nature HABILITATION -->
+  <xs:simpleType name="natureType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FRANCE" />
+      <xs:enumeration value="DEFENSE" />
+      <xs:enumeration value="UNION_EUROPEENNE" />
+      <xs:enumeration value="OTAN" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- AVIS HABILITATION -->
+  <xs:simpleType name="avisHabilitationType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EN_ATTENTE" />
+      <xs:enumeration value="REFUS" />
+      <xs:enumeration value="FAVORABLE_AVEC_RESERVE" />
+      <xs:enumeration value="FAVORABLE" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- ETAT DACSSI -->
+  <xs:simpleType name="etatDacssiType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NON_TRANSMISE" />
+      <xs:enumeration value="TRANSMISE" />
+      <xs:enumeration value="RECUE" />
+      <xs:enumeration value="DECISION" />
+      <xs:enumeration value="ENGAGEMENT" />
+      <xs:enumeration value="CLOS" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- MOTIF DACSSI -->
+  <xs:simpleType name="motifDacssiType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ADMISSION" />
+      <xs:enumeration value="PROVISOIRE" />
+      <xs:enumeration value="RENOUVELLEMENT" />
+      <xs:enumeration value="REVISION" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- FONCTION DACSSI -->
+  <xs:simpleType name="fonctionDacssiType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OSSI" />
+      <xs:enumeration value="OSSI_SUPPLEANT" />
+      <xs:enumeration value="ADMINISTRATION" />
+      <xs:enumeration value="ETUDE_DEVELOPPEMENT_EVALUTAION" />
+      <xs:enumeration value="ELABORATION_MANIPULATION" />
+      <xs:enumeration value="MISE_EN_OEUVRE" />
+      <xs:enumeration value="MAINTENANCE_EN_OEUVRE" />
+      <xs:enumeration value="GESTION_EN_OEUVRE" />
+      <xs:enumeration value="FABRICATION_INDUSTRIALISATION_TEST" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+    <!-- DACSSI WORKFLOW -->
+  <xs:complexType name="workflowDacssiType">
+    <xs:sequence>
+      <xs:element name="Transmission" type="transmissionType" minOccurs="0"/>
+      <xs:element name="Reception" type="receptionType" minOccurs="0"/>
+      <xs:element name="Decision" type="decisionType" minOccurs="0"/>
+      <xs:element name="Clos" type="closType" minOccurs="0"/>   
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- TYPE DOCUMENT IDENTITE -->
+  <xs:simpleType name="documentType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PASSEPORT" />
+      <xs:enumeration value="PERMIS_DE_CONDUIRE_EUROPEEN" />
+      <xs:enumeration value="CARTE_IDENTITE" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- DOCUMENT IDENTITE PERSONNE -->
+  <xs:complexType name="documentIdentiteType">
+    <xs:sequence>
+      <xs:element name="DelivrePar" type="xs:string" minOccurs="0"/>
+      <xs:element name="DateDeDelivrance" type="xs:long" minOccurs="0"/>
+      <xs:element name="TypeDocument" type="documentType"/>
+      <xs:element name="Numero" type="xs:string" minOccurs="0"/>
+      <xs:element name="DateDeValidite" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- INFORMATIONS HABILITATION PERSONNE -->
+  <xs:complexType name="informationsHabilitationExterneType" >
+    <xs:sequence>
+      <xs:element name="NumeroSophia" type="xs:string" minOccurs="0" />
+      <xs:element name="Niveau" type="niveauType" minOccurs="0" />
+      <xs:element name="Nature" type="natureType" minOccurs="0" />
+      <xs:element name="DateValidite" type="xs:long" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- FONCTION PERSONNE -->
+  <xs:simpleType name="fonctionType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INGENIEURS_ET_CADRE" />
+      <xs:enumeration value="EMPLOYES" />
+      <xs:enumeration value="OUVRIERS" />
+      <xs:enumeration value="TECHNICIENS" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- CLASSIFICATION ANNEXE -->
+  <xs:simpleType name="classificationType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CONFIDENTIEL_DEFENSE" />
+      <xs:enumeration value="SECRET_DEFENSE" />
+      <xs:enumeration value="SECRET" />
+      <xs:enumeration value="TRES_SECRET" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- STATUT SUPPORT -->
+  <xs:simpleType name="statutType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AFFECTATION" />
+      <xs:enumeration value="EMISSION" />
+      <xs:enumeration value="DESTRUCTION" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ACTION HISTORIQUE EVENNEMENT -->
+  <xs:simpleType name="actionType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CREATION" />
+      <xs:enumeration value="AFFECTATION" />
+      <xs:enumeration value="RECEPTION" />
+      <xs:enumeration value="EMISSION" />
+      <xs:enumeration value="DESTRUCTION" />
+      <xs:enumeration value="TRANSFERT" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- EVENEMMENT HISTORIQUE -->
+  <xs:complexType name="evenementType">
+    <xs:sequence>
+      <xs:element name="Nom" type="xs:string" minOccurs="0" />
+      <xs:element name="Prenom" type="xs:string" minOccurs="0" />
+      <xs:element name="Action" type="actionType" />
+      <xs:element name="Date" type="xs:long" />
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+      <xs:element name="Commentaire" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- HISTORIQUE SUPPORT -->
+  <xs:complexType name="historiqueType">
+    <xs:sequence>
+      <xs:element name="Evenement" type="evenementType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ACTION HISTORIQUE BADGE EVENNEMENT -->
+  <xs:simpleType name="actionBadgeType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CREATION" />
+      <xs:enumeration value="ACTIVATION" />
+      <xs:enumeration value="DESACTIVATION" />
+      <xs:enumeration value="AFFECTATION" />
+      <xs:enumeration value="DESAFFECTATION" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- EVENEMMENT HISTORIQUE BADGE -->
+  <xs:complexType name="evenementBadgeType">
+    <xs:sequence>
+      <xs:element name="Nom" type="xs:string" minOccurs="0" />
+      <xs:element name="Prenom" type="xs:string" minOccurs="0" />
+      <xs:element name="Action" type="actionBadgeType" />
+      <xs:element name="Date" type="xs:long" />
+      <xs:element name="Description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- HISTORIQUE BADGE -->
+  <xs:complexType name="historiqueBadgeType">
+    <xs:sequence>
+      <xs:element name="Evenement" type="evenementBadgeType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- PARTICIPANTS FORMATION -->
+  <xs:complexType name="participantsType">
+    <xs:sequence>
+      <xs:element name="IdPersonne" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- NATIONALITES PERSONNE -->
+  <xs:complexType name="nationalitesType">
+    <xs:sequence>
+      <xs:element name="Nationalites" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- MENTIONS ANNEXE -->
+  <xs:complexType name="mentionsType">
+    <xs:sequence>
+      <xs:element name="Mentions" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!-- TYPE FORMATION -->
+  <xs:simpleType name="typeFormationType" final="restriction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SENSIBILISATION" />
+      <xs:enumeration value="MISE_EN_EVEIL" />
+      <xs:enumeration value="CISIA" />
+      <xs:enumeration value="AUTRE" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- UTILISATEUR -->
+  <xs:complexType name="utilisateurType">
+    <xs:sequence>
+      <xs:element name="Civilite" type="civiliteType" />
+      <xs:element name="Nom" type="xs:string" />
+      <xs:element name="Prenom" type="xs:string" />
+      <xs:element name="Titre" type="xs:string" />
+      <xs:element name="MotDePasse" type="xs:string" minOccurs="0" />
+      <xs:element name="Signature" type="xs:string" minOccurs="0" />
+      <xs:element name="Admin" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- PERSONNE -->
+  <xs:complexType name="personneType">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" />
+      <xs:element name="Civilite" type="civiliteType" />
+      <xs:element name="Nom" type="xs:string" />
+      <xs:element name="Prenom" type="xs:string" />
+      <xs:element name="Actif" type="xs:boolean" />
+      <xs:element name="Interne" type="xs:boolean" />
+
+      <xs:element name="DateDeNaissance" type="xs:long" minOccurs="0" />
+      <xs:element name="VilleDeNaissance" type="xs:string" minOccurs="0" />
+      <xs:element name="Nationalites" type="nationalitesType" minOccurs="0" />
+      <xs:element name="Fonction" type="fonctionType" minOccurs="0"/>
+
+      <xs:element name="DocumentIdentite" type="documentIdentiteType" minOccurs="0"/>
+      <xs:element name="InformationsHabilitationExterne" type="informationsHabilitationExterneType" minOccurs="0"/>
+
+      <xs:element name="IdEntreprise" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ENTREPRISE -->
+  <xs:complexType name="entrepriseType">
+    <xs:sequence>
+      <xs:element name="Nom" type="xs:string" />
+      <xs:element name="Localite" type="xs:string" />
+      <xs:element name="Adresse" type="xs:string" />
+      <xs:element name="CodePostal" type="xs:string" />
+      <xs:element name="CodeSE" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- HABILITATION -->
+  <xs:complexType name="habilitationType">
+    <xs:sequence>
+      <xs:element name="NumeroInterne" type="xs:string" />
+      <xs:element name="NumeroSophia" type="xs:string" minOccurs="0" />
+      <xs:element name="IdPersonne" type="xs:string" />
+      <xs:element name="DateRemiseDossier" type="xs:long" />
+      <xs:element name="DateValidite" type="xs:long" minOccurs="0" />
+      <xs:element name="DateEngagement" type="xs:long" minOccurs="0" />
+      <xs:element name="DateDesengagement" type="xs:long" minOccurs="0" />
+      <xs:element name="DateCloture" type="xs:long" minOccurs="0" />
+      <xs:element name="Actif" type="xs:boolean" />
+      <xs:element name="Etat" type="etatType"/>
+      <xs:element name="Motif" type="motifType"/>
+      <xs:element name="Niveau" type="niveauType" />
+      <xs:element name="Nature" type="natureType" />
+      <xs:element name="Avis" type="avisHabilitationType" minOccurs="0" />
+      <xs:element name="Workflow" type="workflowType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- SYSTEME D'INFORMATIONS -->
+  <xs:complexType name="systemeInformationsType">
+    <xs:sequence>
+      <xs:element name="Nom" type="xs:string" />
+      <xs:element name="Identifiant" type="xs:string" />
+      <xs:element name="Description" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ANNEXE -->
+  <xs:complexType name="annexeType">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string" />
+      <xs:element name="Nom" type="xs:string" />
+      <xs:element name="NumeroAnnexeSecurite" type="xs:string" />
+      <xs:element name="NumeroOperationProtegee" type="xs:string" />
+      <xs:element name="IdentifiantAnnexeSecurite" type="xs:string" minOccurs="0"/>
+      <xs:element name="DateDebut" type="xs:long" minOccurs="0" />
+      <xs:element name="DateFin" type="xs:long" minOccurs="0" />
+      <xs:element name="Description" minOccurs="0" type="xs:string" />
+      <xs:element name="Classification" type="classificationType" />
+      <xs:element name="Mention" type="mentionsType" minOccurs="0"/>
+      <xs:element name="Ficas" type="xs:boolean" />
+      <xs:element name="IdSystemeInformation" type="xs:string" minOccurs="0" />
+      <xs:element name="IdEmetteur" type="xs:string" minOccurs="0" />
+      <xs:element name="IdTitulaire" type="xs:string" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- SUPPORT -->
+  <xs:complexType name="supportType">
+    <xs:sequence>
+      <xs:element name="Reference" type="xs:string" />
+      <xs:element name="Classification" type="classificationType" />
+      <xs:element name="DateCreation" type="xs:long" />
+      <xs:element name="DateMaj" type="xs:long" />
+      <xs:element name="ReferenceSupport" type="xs:string" />
+      <xs:element name="Description" minOccurs="0" type="xs:string" />
+      <xs:element name="TypeSupport" type="xs:string" />
+      <xs:element name="Statut" type="statutType" />
+      <xs:element name="Localisation" type="xs:string" minOccurs="0" />
+      <xs:element name="Checksum" type="xs:string" minOccurs="0" />
+      <xs:element name="VersionAntiVirus" type="xs:string" minOccurs="0" />
+      <xs:element name="NumeroSerie" type="xs:string" minOccurs="0" />
+      <xs:element name="ReferenceBordereauReception" type="xs:string" minOccurs="0" />
+      <xs:element name="ReferenceBDSExterne" type="xs:string" minOccurs="0" />
+      <xs:element name="Historique" type="historiqueType" />
+      <xs:element name="IdPersonne" type="xs:string" minOccurs="0" />
+      <xs:element name="IdAnnexeSecurite" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!-- FORMATION -->
+  <xs:complexType name="formationType">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string"/>
+      <xs:element name="Libelle" type="xs:string" />
+	  <xs:element name="Type" type="typeFormationType"/>
+      <xs:element name="Programme" type="xs:string" />
+      <xs:element name="Organisateur" type="xs:string" />
+      <xs:element name="DateDeDebut" type="xs:long" minOccurs="0"/>
+      <xs:element name="Duree" type="xs:string" />
+      <xs:element name="Lieu" type="xs:string" />
+      <xs:element name="Termine" type="xs:boolean" />
+      <xs:element name="Participant" type="participantsType" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!-- DACSSI -->
+  <xs:complexType name="dacssiType">
+    <xs:sequence>
+      <xs:element name="NumeroInterne" type="xs:string" />
+      <xs:element name="NumeroSophia" type="xs:string" minOccurs="0" />
+      <xs:element name="Motif" type="motifDacssiType"/>
+      <xs:element name="Fonction" type="fonctionDacssiType"/>
+      <xs:element name="Niveau" type="niveauType" />
+      <xs:element name="Nature" type="natureType" />
+      <xs:element name="Avis" type="avisHabilitationType"/>
+      <xs:element name="DateValidite" type="xs:long" minOccurs="0" />
+      <xs:element name="DateEngagement" type="xs:long" minOccurs="0" />
+      <xs:element name="DateDesengagement" type="xs:long" minOccurs="0" />
+      <xs:element name="DateRemiseDossier" type="xs:long" minOccurs="0"/>
+      <xs:element name="DateProvisoireDebut" type="xs:long" minOccurs="0"/>
+      <xs:element name="DateProvisoireFin" type="xs:long" minOccurs="0"/>
+      <xs:element name="DateCloture" type="xs:long" minOccurs="0" />
+      <xs:element name="Etat" type="etatDacssiType"/>
+      <xs:element name="IdentifiantACSSI" type="xs:string" minOccurs="0" />      
+      <xs:element name="IdPersonne" type="xs:string" />
+      <xs:element name="IdAnnexe" type="xs:string" />
+	    <xs:element name="IdFormation" type="xs:string" /> 
+      <xs:element name="Workflow" type="workflowDacssiType" minOccurs="0" />    
+    </xs:sequence>
+  </xs:complexType>
+
+    <!-- BADGE -->
+  <xs:complexType name="badgeType">
+  	<xs:sequence>
+  	  <xs:element name="Numero" type="xs:string" />
+      <xs:element name="Actif" type="xs:boolean" />
+      <xs:element name="Historique" type="historiqueBadgeType" minOccurs="0" />
+  	  <xs:element name="IdPersonne" type="xs:string" minOccurs="0" />
+  	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:simpleType name="ModelVersionType">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- root -->
+  <xs:element name="GiraphixDatas">
+    <xs:complexType>
+      <xs:sequence>
+
+        <!-- Utilisateurs -->
+        <xs:element name="Utilisateurs" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Utilisateur" type="utilisateurType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Entreprises -->
+        <xs:element name="Entreprises" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Entreprise" type="entrepriseType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Personnes -->
+        <xs:element name="Personnes" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Personne" type="personneType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Habilitations -->
+        <xs:element name="Habilitations" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Habilitation" type="habilitationType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- SystemesInformations -->
+        <xs:element name="SystemesInformations" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SystemeInformations" type="systemeInformationsType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Annexes -->
+        <xs:element name="Annexes" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Annexe" type="annexeType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Supports -->
+        <xs:element name="Supports" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Support" type="supportType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Formations -->
+        <xs:element name="Formations" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Formation" type="formationType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        
+        <!-- DACSSI -->
+        <xs:element name="DacssiList" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DACSSI" type="dacssiType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Badges -->
+        <xs:element name="Badges" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Badge" type="badgeType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+
+      <!--<xs:attribute ref="version" use="required"/>-->
+      <xs:attribute name="ModelVersion" type="ModelVersionType" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

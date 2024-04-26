@@ -11,6 +11,9 @@ import _CG.read.ICGReader;
 import _CG.writer.CGWriter;
 import _CG.writer.ICGWriter;
 
+/**
+ * Classe principal de l'application.
+ */
 public class CGMain {
 
 	/** Titre de la dialogue permettant de choisir le fichier à lire. */
