@@ -14,9 +14,7 @@ public class PersonneComparator implements Comparator<PersonneType> {
 
 		int resultValue = -1;
 
-		if (personne1.getNom().equals(personne2.getNom()) && personne1.getPrenom().equals(personne2.getPrenom())
-				&& personne1.getDateDeNaissance()
-						.equals(personne2.getDateDeNaissance())) {
+		if (personne1.getNom().equals(personne2.getNom()) && personne1.getPrenom().equals(personne2.getPrenom())) {
 			resultValue = 0;
 		}
 

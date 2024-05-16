@@ -7,14 +7,20 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.ss.usermodel.CellType;
 
 import _CG.bean.AvisHabilitationType;
+import _CG.bean.ClosType;
 import _CG.bean.DecisionType;
+import _CG.bean.EtatType;
 import _CG.bean.HabilitationType;
+import _CG.bean.MotifType;
 import _CG.bean.NatureType;
 import _CG.bean.NiveauType;
 import _CG.bean.ObjectFactory;
+import _CG.bean.ReceptionType;
 import _CG.bean.TransmissionType;
 import _CG.bean.WorkflowType;
-import _CG.read.constant.ConstantHabilitation;
+import _CG.constant.ConstantHabilitation;
+import _CG.exception.LineExcelException;
+import _CG.tools.ApplicationLoader;
 
 /**
  * Constructeur de données pour {@link HabilitationType}.
@@ -40,6 +46,8 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 	public void reset() {
 		this.mHabilitation = mFabrique.createHabilitationType();
 		this.mWorkflowType = mFabrique.createWorkflowType();
+		this.mHabilitation.setEtat(EtatType.TRANSMISE);
+		this.mHabilitation.setMotif(MotifType.ADMISSION);
 		this.isToAdded = true;
 	}
 
@@ -74,8 +82,9 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 	 * Affectation du type d'habilitation.
 	 * 
 	 * @param cell Cellule où l'on va récupérer la'information.
+	 * @throws LineExcelException
 	 */
-	public void setTypeHabilitation(HSSFCell cell) {
+	public void setTypeHabilitation(HSSFCell cell) throws LineExcelException {
 		String cellValue = getStringFromCell(cell);
 
 		switch (cellValue) {
@@ -92,7 +101,7 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 			this.mHabilitation.setNature(NatureType.FRANCE);
 			this.mHabilitation.setNiveau(NiveauType.TRES_SECRET);
 			break;
-		case ConstantHabilitation.SF_UE:
+		case ConstantHabilitation.SUE:
 			this.mHabilitation.setNature(NatureType.UNION_EUROPEENNE);
 			this.mHabilitation.setNiveau(NiveauType.SECRET);
 			break;
@@ -106,10 +115,10 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 			this.mHabilitation.setNiveau(NiveauType.CONFIDENTIEL);
 			break;
 		case ConstantHabilitation.CPR:
-			// NE fait rien
-			break;
 		default:
-			break;
+			int rowIndex = cell.getRowIndex() - 1;
+			throw new LineExcelException(ApplicationLoader.getInstance()
+					.getText("message.error.line.not.added.type.habilitation", Integer.toString(rowIndex), cellValue));
 		}
 	}
 
@@ -122,6 +131,7 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 		long date = getShortDateFromCell(cell);
 		if (date != 0) {
 			this.mHabilitation.setDateEngagement(date);
+			this.mHabilitation.setEtat(EtatType.ENGAGEMENT);
 		}
 	}
 
@@ -138,6 +148,9 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 			this.mWorkflowType.setTransmission(transmissionType);
 
 			this.mHabilitation.setDateRemiseDossier(date);
+			this.mHabilitation.setEtat(EtatType.TRANSMISE);
+		} else {
+			this.mHabilitation.setEtat(EtatType.NON_TRANSMISE);
 		}
 	}
 
@@ -145,8 +158,9 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 	 * Affectation de la date de validité d'habilitation.
 	 * 
 	 * @param cell Cellule où l'on va récupérer l'information.
+	 * @throws LineExcelException
 	 */
-	public void setValiditeHabilitation(HSSFCell cell) {
+	public void setValiditeHabilitation(HSSFCell cell) throws LineExcelException {
 		long date = getShortDateFromCell(cell);
 		if (date != 0) {
 			this.mHabilitation.setDateValidite(date);
@@ -156,6 +170,9 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 				this.mHabilitation.setActif(true);
 			} else {
 				this.isToAdded = false;
+				throw new LineExcelException(ApplicationLoader.getInstance()
+						.getText("message.error.line.not.added.date.validation",
+								Integer.toString(cell.getRowIndex() - 1)));
 			}
 		} else if (cell.getCellType() == CellType.STRING) {
 			String currentValue = getStringFromCell(cell);
@@ -163,6 +180,9 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 					&& StringUtils.indexOfIgnoreCase(StringUtils.stripAccents(currentValue),
 							ConstantHabilitation.REFUS) != -1) {
 				this.mHabilitation.setAvis(AvisHabilitationType.REFUS);
+				this.mHabilitation.setEtat(EtatType.CLOS);
+				ClosType closType = this.mFabrique.createClosType();
+				this.mWorkflowType.setClos(closType);
 			}
 			this.mHabilitation.setActif(false);
 		} else {
@@ -181,7 +201,25 @@ public class HabilitationBuilder extends ABuilder implements IBuilder {
 		if (date != 0) {
 			DecisionType decisionType = this.mFabrique.createDecisionType();
 			decisionType.setDate(date);
+			// Mettre sur la date de validite
 			this.mWorkflowType.setDecision(decisionType);
+			this.mHabilitation.setEtat(EtatType.DECISION);
+		} else if (cell.getCellType() == CellType.STRING) {
+			String currentValue = getStringFromCell(cell);
+			if (StringUtils.indexOfIgnoreCase(StringUtils.stripAccents(currentValue),
+					ConstantHabilitation.REFUS) != -1) {
+				this.mHabilitation.setAvis(AvisHabilitationType.REFUS);
+				this.mHabilitation.setEtat(EtatType.CLOS);
+				ClosType closType = this.mFabrique.createClosType();
+				this.mWorkflowType.setClos(closType);
+			}
+		} else {
+			if (!this.mHabilitation.getNumeroSophia().isBlank()) {
+				this.mHabilitation.setEtat(EtatType.RECUE);
+
+				ReceptionType receptionType = this.mFabrique.createReceptionType();
+				this.mWorkflowType.setReception(receptionType);
+			}
 		}
 	}
 

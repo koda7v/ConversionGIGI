@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="CG">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d [%-5p] (%F:%M:%L) %m%n"/>
+        </Console>
+        <File name="LogToFile" fileName="logs/CGLog.log">
+            <PatternLayout pattern="%d [%-5p] (%F:%M:%L) %m%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>

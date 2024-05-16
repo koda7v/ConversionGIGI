@@ -4,21 +4,21 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // POI
-	    classpath 'org.apache.poi:poi:5.2.5'
-	    
-	    // JAXB
-	    classpath 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
-		classpath 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
-		classpath 'org.apache.commons:commons-lang3:3.14.0'
-		
 		// Launch4j
-		classpath 'edu.sc.seis.launch4j:launch4j:3.0.5'
+		classpath 'edu.sc.seis.launch4j:launch4j:' + launchVersion
     }
+    
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 apply plugin: 'java'
 apply plugin: 'edu.sc.seis.launch4j'
+apply plugin: 'application'
 
 repositories {
     mavenCentral()
@@ -31,32 +31,54 @@ configurations {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
     
+    // LOG4j
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4jVersion
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4jVersion
+    
     // POI
-    implementation group: 'org.apache.poi', name: 'poi', version: '5.2.5'
+    implementation group: 'org.apache.poi', name: 'poi', version: poiVersion
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: poiVersion
     
     // JAXB
-    implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.2'
-	implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '4.0.5'
-	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.14.0'
+    implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: jakartaVersion
+	implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: jaxbVersion
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: commonsVersion
+	
+    jaxb 'com.sun.xml.bind:jaxb-impl:' + jaxbVersion
+    jaxb 'com.sun.xml.bind:jaxb-xjc:' + jaxbVersion
+    jaxb 'com.sun.xml.bind:jaxb-osgi:' + jaxbVersion
+    jaxb 'javax.xml.bind:jaxb-api:' + jaxbAPIVersion
+}
 
-    jaxb 'com.sun.xml.bind:jaxb-impl:4.0.5'
-    jaxb 'com.sun.xml.bind:jaxb-xjc:4.0.5'
-    jaxb 'com.sun.xml.bind:jaxb-osgi:4.0.5'
-    jaxb 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+javafx {
+    version = javaFXVersion
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+application {
+	mainClass = cgNameClass
+    applicationDefaultJvmArgs = ["-Dlog4j.configurationFile=${projectDir}/src/main/resources/log4j2.xml"]
 }
 
 launch4j {
- 	mainClassName = '_CG.Application'
- 	icon = "${projectDir}/icons/myApp.ico"
+ 	mainClassName = cgNameClass
 	outfile="CG.exe"
 	icon="${projectDir}/src/main/resources/logo.ico"
 	windowTitle = 'CG'
+	fileDescription = "Conversion de données pour l'outil GIRAPHIX."
+	libraryDir = 'lib'
+	version = cgVersion
 }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(19)
     }
+}
+
+run {
+	if(javafx.platform.classifier == 'win')
+		systemProperty "java.library.path", "C:\tmp"
 }
 
 tasks.named('test') {
@@ -83,11 +105,32 @@ task generateJaxb {
     }
 }
 
+clean.doFirst {
+    delete layout.buildDirectory.dir("../../package")
+}
+
+task moveExe(type:Copy) {
+    description 'Déplacement du package'
+    group 'build'
+    from(layout.buildDirectory.dir("launch4j"))
+    include "*.exe"
+    into(layout.buildDirectory.dir("../../package"))
+}
+
+tasks.named("build") { finalizedBy("createExe") }
+tasks.named("createExe") { finalizedBy("moveExe") }
+
 jar {
     archiveBaseName = 'CG'
-    archiveVersion =  '0.0.1'
+    archiveVersion =  cgVersion
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     manifest {
-        attributes 'Main-Class': '_CG.Application'
+        attributes ('Main-Class': cgNameClass)
     }
+    
+   from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+   }
 }
+
 

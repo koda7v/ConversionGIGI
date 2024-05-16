@@ -1,0 +1,256 @@
+2024-05-16 09:59:41,389 [INFO ] (CGMain.java:start:37) Lancement de l'application
+2024-05-16 10:00:44,205 [INFO ] (CGExcelReader.java:read:89) Debut de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:00:44,740 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 168 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,756 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 206 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,761 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 217 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,764 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 224 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,765 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 225 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,766 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 226 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,766 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 227 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,767 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 228 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,768 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 229 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,769 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 230 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,769 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 231 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,770 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 232 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,771 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 233 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,771 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 234 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,772 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 235 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,773 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 236 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,773 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 237 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,774 [WARN ] (HabilitationPageReader.java:readRow:173) La ligne 239 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:00:44,812 [WARN ] (DacsiiPageReader.java:readRow:150) La ligne 6 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:00:44,813 [INFO ] (CGExcelReader.java:read:116) Fin de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:09:19,794 [INFO ] (CGMain.java:stop:48) Arrêt de l'application
+2024-05-16 10:16:12,443 [INFO ] (CGMain.java:start:37) Lancement de l'application
+2024-05-16 10:16:21,721 [INFO ] (CGExcelReader.java:read:89) Debut de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:16:22,252 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 168 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,266 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 206 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,271 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 217 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,274 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 224 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,274 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 225 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,275 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 226 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,275 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 227 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,276 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 228 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,276 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 229 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,277 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 230 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,278 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 231 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,278 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 232 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,279 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 233 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,279 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 234 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,280 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 235 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,281 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 236 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,281 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 237 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,282 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 239 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:16:22,289 [WARN ] (DacsiiPageReader.java:readRow:148) La ligne 2 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:16:22,289 [WARN ] (DacsiiPageReader.java:readRow:148) La ligne 3 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:16:22,290 [WARN ] (DacsiiPageReader.java:readRow:148) La ligne 4 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:16:22,290 [WARN ] (DacsiiPageReader.java:readRow:148) La ligne 5 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:16:22,290 [WARN ] (DacsiiPageReader.java:readRow:148) La ligne 7 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:16:22,291 [INFO ] (CGExcelReader.java:read:116) Fin de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:18:16,717 [ERROR] (Tools.java:displayMessage:66) Impossible d'effectuer la vérification du fichier XML.
+_CG.exception.CGException: Impossible de vérifier le fichier XSD.
+	at _CG.CGMainView.checkXSD(CGMainView.java:405) ~[main/:?]
+	at _CG.CGMainView.lambda$0(CGMainView.java:207) ~[main/:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49) ~[javafx.base.jar:?]
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198) ~[javafx.base.jar:?]
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8919) ~[javafx.graphics.jar:?]
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203) ~[javafx.controls.jar:?]
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207) ~[javafx.controls.jar:?]
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274) ~[javafx.controls.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74) ~[javafx.base.jar:?]
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54) ~[javafx.base.jar:?]
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198) ~[javafx.base.jar:?]
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3987) ~[javafx.graphics.jar:?]
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1893) ~[javafx.graphics.jar:?]
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301) ~[javafx.graphics.jar:?]
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399) ~[?:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:551) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:937) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method) ~[javafx.graphics.jar:?]
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184) ~[javafx.graphics.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:1589) [?:?]
+Caused by: org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"giraphix":IdAnnexe}'. One of '{"giraphix":IdentifiantACSSI, "giraphix":IdPersonne}' is expected.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3600) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:374) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2726) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:542) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:889) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:825) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.StreamValidatorHelper.validate(StreamValidatorHelper.java:178) ~[?:?]
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:115) ~[?:?]
+	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124) ~[?:?]
+	at _CG.CGMainView.checkXSD(CGMainView.java:402) ~[main/:?]
+	... 46 more
+2024-05-16 10:20:41,271 [INFO ] (CGMain.java:stop:48) Arrêt de l'application
+2024-05-16 10:20:44,985 [INFO ] (CGMain.java:start:37) Lancement de l'application
+2024-05-16 10:20:54,428 [INFO ] (CGExcelReader.java:read:89) Debut de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:20:55,149 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 168 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,163 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 206 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,168 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 217 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,172 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 224 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,173 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 225 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,173 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 226 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,174 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 227 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,175 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 228 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,175 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 229 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,176 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 230 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,177 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 231 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,177 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 232 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,178 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 233 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,179 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 234 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,180 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 235 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,180 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 236 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,181 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 237 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,181 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 239 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:20:55,186 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 2 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:20:55,186 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 3 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:20:55,187 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 4 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:20:55,187 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 5 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:20:55,187 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 6 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:20:55,188 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 7 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:20:55,188 [INFO ] (CGExcelReader.java:read:116) Fin de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:22:25,404 [INFO ] (CGMain.java:start:37) Lancement de l'application
+2024-05-16 10:22:32,586 [INFO ] (CGExcelReader.java:read:89) Debut de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:22:33,216 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 168 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,232 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 206 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,236 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 217 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,239 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 224 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,240 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 225 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,240 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 226 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,241 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 227 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,242 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 228 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,242 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 229 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,243 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 230 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,244 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 231 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,245 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 232 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,246 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 233 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,248 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 234 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,250 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 235 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,253 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 236 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,254 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 237 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:22:33,254 [WARN ] (HabilitationPageReader.java:readRow:172) La ligne 239 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:23:39,112 [INFO ] (CGExcelReader.java:read:116) Fin de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:29:36,305 [INFO ] (CGMain.java:start:37) Lancement de l'application
+2024-05-16 10:29:42,971 [INFO ] (CGExcelReader.java:read:89) Debut de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:29:43,476 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 168 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,490 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 206 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,496 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 217 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,498 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 224 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,499 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 225 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,500 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 226 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,500 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 227 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,501 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 228 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,501 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 229 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,502 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 230 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,503 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 231 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,503 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 232 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,504 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 233 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,505 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 234 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,506 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 235 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,507 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 236 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,508 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 237 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,508 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 239 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:29:43,515 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 6 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:29:43,516 [INFO ] (CGExcelReader.java:read:116) Fin de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:29:54,722 [INFO ] (CGXMLReader.java:read:39) Debut de la lecture du XML :Export_Bordeaux_giraphix160524102943.xml
+2024-05-16 10:29:54,807 [INFO ] (CGXMLReader.java:read:50) Fin de la lecture du XMl :Export_Bordeaux_giraphix160524102943.xml
+2024-05-16 10:29:54,808 [INFO ] (CGExcelWriter.java:write:74) Debut de l'écriture.
+2024-05-16 10:29:55,449 [INFO ] (CGExcelWriter.java:constructData:145) Ecriture des données.
+2024-05-16 10:29:57,165 [INFO ] (CGExcelWriter.java:writeData:123) Ecriture du fichier.
+2024-05-16 10:29:59,779 [INFO ] (CGExcelWriter.java:write:95) Fin de l'écriture.
+2024-05-16 10:34:01,096 [INFO ] (CGMain.java:stop:48) Arrêt de l'application
+2024-05-16 10:34:15,710 [INFO ] (CGMain.java:start:37) Lancement de l'application
+2024-05-16 10:34:22,882 [INFO ] (CGExcelReader.java:read:89) Debut de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:34:23,366 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 168 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,381 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 206 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,385 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 217 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,389 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 224 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,389 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 225 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,390 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 226 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,391 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 227 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,391 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 228 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,392 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 229 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,392 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 230 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,393 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 231 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,393 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 232 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,394 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 233 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,395 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 234 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,395 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 235 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,397 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 236 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,397 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 237 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,398 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 239 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 10:34:23,402 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 6 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 10:34:23,403 [INFO ] (CGExcelReader.java:read:116) Fin de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 10:35:57,714 [INFO ] (CGXMLReader.java:read:39) Debut de la lecture du XML :Export_Bordeaux_giraphix160524103423.xml
+2024-05-16 10:35:57,793 [INFO ] (CGXMLReader.java:read:50) Fin de la lecture du XMl :Export_Bordeaux_giraphix160524103423.xml
+2024-05-16 10:35:57,793 [INFO ] (CGExcelWriter.java:write:74) Debut de l'écriture.
+2024-05-16 10:35:58,395 [INFO ] (CGExcelWriter.java:constructData:145) Ecriture des données.
+2024-05-16 10:35:59,937 [INFO ] (CGExcelWriter.java:writeData:123) Ecriture du fichier.
+2024-05-16 10:36:02,507 [INFO ] (CGExcelWriter.java:write:95) Fin de l'écriture.
+2024-05-16 10:36:22,289 [INFO ] (CGMain.java:stop:48) Arrêt de l'application
+2024-05-16 10:42:33,224 [INFO ] (CGMain.java:start:37) Lancement de l'application
+2024-05-16 10:42:38,427 [INFO ] (CGXMLReader.java:read:39) Debut de la lecture du XML :Export_Bordeaux_giraphix160524103423.xml
+2024-05-16 10:42:38,660 [INFO ] (CGXMLReader.java:read:50) Fin de la lecture du XMl :Export_Bordeaux_giraphix160524103423.xml
+2024-05-16 10:42:38,660 [INFO ] (CGExcelWriter.java:write:74) Debut de l'écriture.
+2024-05-16 10:42:39,284 [INFO ] (CGExcelWriter.java:constructData:145) Ecriture des données.
+2024-05-16 10:42:41,686 [INFO ] (CGExcelWriter.java:writeData:123) Ecriture du fichier.
+2024-05-16 10:42:44,197 [INFO ] (CGExcelWriter.java:write:95) Fin de l'écriture.
+2024-05-16 12:11:01,259 [INFO ] (CGMain.java:start:37) Lancement de l'application
+2024-05-16 12:12:29,206 [INFO ] (CGExcelReader.java:read:89) Debut de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls
+2024-05-16 12:12:29,657 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 168 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,672 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 206 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,676 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 217 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,679 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 224 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,680 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 225 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,680 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 226 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,681 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 227 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,682 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 228 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,682 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 229 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,683 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 230 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,684 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 231 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,685 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 232 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,686 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 233 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,687 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 234 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,688 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 235 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,689 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 236 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,690 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 237 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,691 [WARN ] (HabilitationPageReader.java:readRow:168) La ligne 239 n'a pas été ajouté, la date d'habilitation a expiré.
+2024-05-16 12:12:29,697 [WARN ] (DacsiiPageReader.java:readRow:149) La ligne 6 n'a pas été ajouté, la personnes n'est pas présente dans la page des habilitations.
+2024-05-16 12:12:29,697 [INFO ] (CGExcelReader.java:read:116) Fin de la lecture du Excel :Suivi Habilitation BDX_banalisé_Reviser.xls

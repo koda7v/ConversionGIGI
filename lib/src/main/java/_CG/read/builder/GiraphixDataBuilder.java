@@ -1,12 +1,22 @@
 package _CG.read.builder;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import _CG.bean.DacssiType;
 import _CG.bean.EntrepriseType;
 import _CG.bean.GiraphixDatas;
 import _CG.bean.HabilitationType;
+import _CG.bean.MotifType;
 import _CG.bean.ObjectFactory;
 import _CG.bean.PersonneType;
-import _CG.comparator.PersonneComparator;
+import _CG.comparator.HabilitationDescendingComparator;
+import _CG.tools.ApplicationLoader;
 
 /**
  * Builder permettant la création des entités de haut niveau de l'application de
@@ -24,6 +34,8 @@ public class GiraphixDataBuilder extends ABuilder implements IBuilder {
 	protected GiraphixDatas.DacssiList mDacsii;
 	/** Donnée importer. */
 	protected GiraphixDatas mDatas;
+	/** Liste d'habilitations par personne(ID). */
+	protected Map<String, List<HabilitationType>> mHabilitationByPersonne;
 
 	/**
 	 * Constructeur.
@@ -34,6 +46,7 @@ public class GiraphixDataBuilder extends ABuilder implements IBuilder {
 	public GiraphixDataBuilder(ObjectFactory fabrique) {
 		super(fabrique);
 
+		this.mHabilitationByPersonne = new HashMap<String, List<HabilitationType>>();
 		this.mDatas = mFabrique.createGiraphixDatas();
 		this.reset();
 	}
@@ -61,6 +74,16 @@ public class GiraphixDataBuilder extends ABuilder implements IBuilder {
 	 * @param habilitation {@link HabilitationType} à ajouter.
 	 */
 	public void addHabilitation(HabilitationType habilitation) {
+		String idPersonne = habilitation.getIdPersonne();
+		if (mHabilitationByPersonne.containsKey(idPersonne)) {
+			List<HabilitationType> list = mHabilitationByPersonne.get(idPersonne);
+			list.add(habilitation);
+		} else {
+			List<HabilitationType> habilitationTypes = new ArrayList<HabilitationType>();
+			habilitationTypes.add(habilitation);
+			mHabilitationByPersonne.put(idPersonne, habilitationTypes);
+		}
+
 		this.mHabilitations.getHabilitation().add(habilitation);
 	}
 
@@ -87,15 +110,58 @@ public class GiraphixDataBuilder extends ABuilder implements IBuilder {
 	 *         l'application GIRAPHIX.
 	 */
 	public GiraphixDatas getResult() {
+		updateHabilitationsMotif();
+
 		// Affectation des données
 		mDatas.setPersonnes(mPersonnes);
 		mDatas.setHabilitations(mHabilitations);
 		mDatas.setEntreprises(mEntreprise);
 		mDatas.setDacssiList(mDacsii);
 
+		// Mise à jour de la version
+		mDatas.setModelVersion(ApplicationLoader.getInstance().getText("giraphix.version"));
+
 		return mDatas;
 	}
 	
+	/**
+	 * Modification du motif des habilitations pour une même persoone.
+	 */
+	protected void updateHabilitationsMotif() {
+		Comparator<HabilitationType> comparator = new HabilitationDescendingComparator();
+		for (List<HabilitationType> habilitations : mHabilitationByPersonne.values()) {
+			List<HabilitationType> habilitationSorted = habilitations.stream().filter(this::hasDateValidite)
+					.sorted(comparator).collect(Collectors.toList());
+			int size = habilitationSorted.size();
+			if (size > 1) {
+				for (int i = 0; i < habilitationSorted.size(); i++) {
+					if ((i + 1) < size) {
+						HabilitationType habilitationType = habilitationSorted.get(i);
+						HabilitationType habilitationTypeNext = habilitationSorted.get(i + 1);
+						if (habilitationType.getNiveau().equals(habilitationTypeNext.getNiveau())
+								&& habilitationType.getNature().equals(habilitationTypeNext.getNature())) {
+							habilitationTypeNext.setMotif(MotifType.RENOUVELLEMENT);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Vérification de la présence de la date de validation.
+	 * 
+	 * @param habilitation Habilitation sur laquelle on travaille.
+	 * @return True, si elle est présente.
+	 */
+	public boolean hasDateValidite(HabilitationType habilitation) {
+		Long dateValidite = habilitation.getDateValidite();
+		if (dateValidite != null) {
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * Vérifie si la personne est déjà enregistré. Si c'est le cas on renvoie l'ID
 	 * de la personne déjà enregistré. Sinon on renvoie l'ID de la personne donnée
@@ -103,17 +169,15 @@ public class GiraphixDataBuilder extends ABuilder implements IBuilder {
 	 * 
 	 * @return ID de la personne.
 	 */
-	public String verifiesPresenceOfPersonneAndGetGoodID(PersonneType personne) {
+	public boolean checkPresenceOfOnePersonne(PersonneType personne, Comparator<PersonneType> comparator) {
 		// Vérification de la présence d'une personne 
 		// Vérification qu'aucun personne de ce type n'est présente dans les données
-		PersonneComparator comparator = new PersonneComparator();
-		PersonneType goodPersonne = this.mPersonnes.getPersonne()
+		Optional<PersonneType> goodPersonne = this.mPersonnes.getPersonne()
 				.stream()
 				.filter(p -> comparator.compare(p, personne) == 0)
-				.findAny()
-				.orElse(personne);
+				.findAny();
 
-		return goodPersonne.getId();
+		return goodPersonne.isPresent();
 	}
 
 }

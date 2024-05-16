@@ -1,9 +1,12 @@
 package _CG.read.builder;
 
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -15,6 +18,8 @@ import _CG.bean.ObjectFactory;
  */
 public abstract class ABuilder {
 
+	/** Logger. */
+	private static final Logger LOGGER = LogManager.getLogger(ABuilder.class);
 	/** Format de la date avec les 4 chiffres de l'année. */
 	protected SimpleDateFormat mLongDateFormat;
 	/** Format de la date avec les 2 chiffres de l'année. */
@@ -44,22 +49,7 @@ public abstract class ABuilder {
 	 * @return Date convertie en long, 0 si aucune date n'est trouvé.
 	 */
 	protected long getLongDateFromCell(HSSFCell cell) {
-		if (cell.getCellType() == CellType.NUMERIC) {
-			DataFormatter df = new DataFormatter();
-			String CellValue = df.formatCellValue(cell);
-
-			Date currentDate;
-			try {
-				currentDate = mLongDateFormat.parse(CellValue);
-				if (currentDate != null) {
-					return currentDate.getTime();
-				}
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return 0;
+		return getDateFromCell(cell, mLongDateFormat);
 	}
 
 	/**
@@ -69,33 +59,45 @@ public abstract class ABuilder {
 	 * @return Date convertie en long, 0 si aucune date n'est trouvé.
 	 */
 	protected long getShortDateFromCell(HSSFCell cell) {
+		return getDateFromCell(cell, mShortDateFormat);
+	}
+
+	/**
+	 * Récupération d'une date présente dans une cellule.
+	 * 
+	 * @param cell       Cellule à gérer.
+	 * @param dateFormat Format de conversion de la date.
+	 * @return Date convertie en long, 0 si aucune date n'est trouvé.
+	 */
+	protected long getDateFromCell(HSSFCell cell, SimpleDateFormat dateFormat) {
+		String indexRow = Integer.toString(cell.getRowIndex() - 1);
+		String msgError = "Problème rencontré sur la conversion de la date : {0} , à la ligne : {1}.";
+
 		if (cell.getCellType() == CellType.NUMERIC) {
 			DataFormatter df = new DataFormatter();
-            String CellValue = df.formatCellValue(cell);
+			String cellValue = df.formatCellValue(cell);
 
 			Date currentDate;
 			try {
-				currentDate = mShortDateFormat.parse(CellValue);
+				currentDate = dateFormat.parse(cellValue);
 				if (currentDate != null) {
 					return currentDate.getTime();
 				}
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.warn(MessageFormat.format(msgError, cellValue, indexRow), e);
 			}
 		} else if (cell.getCellType() == CellType.STRING) {
-			String[] split = cell.getStringCellValue()
-					.split("\\n+");
+			String stringCellValue = cell.getStringCellValue();
+			String[] split = stringCellValue.split("\\n+");
 			if (split.length > 1) {
 				Date currentDate;
 				try {
-					currentDate = mLongDateFormat.parse(split[0]);
-					if (currentDate != null) {
+					currentDate = dateFormat.parse(split[0]);
+					if (currentDate != null && currentDate.getTime() > 0) {
 						return currentDate.getTime();
 					}
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.warn(MessageFormat.format(msgError, stringCellValue, indexRow), e);
 				}
 			}
 		}

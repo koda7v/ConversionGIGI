@@ -1,9 +1,11 @@
 package _CG.read;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.ss.usermodel.CellType;
 
+import _CG.bean.PersonneType;
 import _CG.read.builder.GiraphixDataBuilder;
 import _CG.read.builder.IBuilder;
 
@@ -46,6 +48,19 @@ public abstract class ACGSheetReader {
 	protected boolean checkCellValue(int cellIndexToCHeck, HSSFRow row) {
 		HSSFCell cell = row.getCell(cellIndexToCHeck);
 		return cell != null && cell.getCellType() != CellType.BLANK;
+	}
+
+	/**
+	 * Crée et récupére de l'ID de la personne.
+	 * 
+	 * @param personneType Personne surlaquelle on travaille.
+	 * @return Identifiant.
+	 */
+	protected String createAndGetPersonneID(PersonneType personneType) {
+		String nomWithoutAccent = StringUtils.stripAccents(personneType.getNom());
+		String prenomWithoutAccent = StringUtils.stripAccents(personneType.getPrenom());
+		String personneID = nomWithoutAccent.toUpperCase() + prenomWithoutAccent.toUpperCase();
+		return personneID;
 	}
 
 }
