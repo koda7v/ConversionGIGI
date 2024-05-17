@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
-import org.apache.commons.lang3.SystemProperties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Row;
@@ -58,6 +57,8 @@ public class CGExcelWriter implements ICGWriter {
 	protected PersonneCellBuilder mPersonneBuilder;
 	/** {@link HabilitationCellBuilder} */
 	protected HabilitationCellBuilder mHabilitationBuilder;
+	/** Chemin où l'on va placer le fichier écrit. */
+	protected String mPathForFolder;
 
 	/**
 	 * Constructeur.
@@ -106,7 +107,7 @@ public class CGExcelWriter implements ICGWriter {
 		writeData(workbook);
 
 		try {
-			Desktop.getDesktop().open(new File(SystemProperties.getUserDir()));
+			Desktop.getDesktop().open(new File(mPathForFolder));
 		} catch (IOException e) {
 			throw new CGException(ApplicationLoader.getInstance().getText("message.error.writer.desktop"), e);
 		}
@@ -125,8 +126,8 @@ public class CGExcelWriter implements ICGWriter {
 		Date date = new Date();
 		SimpleDateFormat formater = new SimpleDateFormat(EXPORT_DATE_FORMAT);
 		// Vérification des droits
-		File fileToWrite = new File(SystemProperties.getUserDir() + File.separator + formater.format(date)
-				+ EXPORT_TITLE_NAME + EXPORT_EXTENSION);
+		File fileToWrite = new File(
+				mPathForFolder + File.separator + formater.format(date) + EXPORT_TITLE_NAME + EXPORT_EXTENSION);
 		try {
 			FileOutputStream outputStream = new FileOutputStream(fileToWrite.getPath());
 			workbook.write(outputStream);
@@ -269,5 +270,10 @@ public class CGExcelWriter implements ICGWriter {
 	@Override
 	public void setDatas(GiraphixDatas giraphixDatas) {
 		this.mDatas = giraphixDatas;
+	}
+
+	@Override
+	public void setFolderPath(String path) {
+		this.mPathForFolder = path;
 	}
 }

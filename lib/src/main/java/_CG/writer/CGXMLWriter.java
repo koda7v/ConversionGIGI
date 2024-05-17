@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.commons.lang3.SystemProperties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,6 +34,8 @@ public class CGXMLWriter implements ICGWriter {
 
 	/** Donnée importer. */
 	protected GiraphixDatas mDatas;
+	/** Chemin où l'on va placer le fichier écrit. */
+	protected String mPathForFolder;
 
 	/**
 	 * Constructeur.
@@ -57,14 +58,14 @@ public class CGXMLWriter implements ICGWriter {
 			SimpleDateFormat formater = new SimpleDateFormat(EXPORT_DATE_FORMAT);
 
 			// Vérification des droits
-			marshaller.marshal(mDatas, new File(SystemProperties.getUserDir() + File.separator + EXPORT_TITLE_NAME
+			marshaller.marshal(mDatas, new File(mPathForFolder + File.separator + EXPORT_TITLE_NAME
 					+ formater.format(date) + EXPORT_EXTENSION));
 
 			Thread t = new Thread() {
 				@Override
 				public void run() {
 					try {
-						Desktop.getDesktop().open(new File(SystemProperties.getUserDir()));
+						Desktop.getDesktop().open(new File(mPathForFolder));
 					} catch (IOException e) {
 						Tools.displayMessage(ApplicationLoader.getInstance().getText("message.error.writer.desktop"),
 								AlertType.WARNING, LOGGER, e);
@@ -81,5 +82,10 @@ public class CGXMLWriter implements ICGWriter {
 	@Override
 	public void setDatas(GiraphixDatas giraphixDatas) {
 		this.mDatas = giraphixDatas;
+	}
+
+	@Override
+	public void setFolderPath(String path) {
+		this.mPathForFolder = path;
 	}
 }

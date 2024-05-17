@@ -196,6 +196,7 @@ public class CGMainView extends VBox implements Initializable {
 		mGenerateButton.setOnAction(e -> {
 			ICGReader reader = null;
 			ICGWriter writer = null;
+			String path = "";
 			File selectedFile = null;
 
 			// Gestion pour l'onglet des XML
@@ -207,6 +208,7 @@ public class CGMainView extends VBox implements Initializable {
 						if (checkXSD()) {
 							reader = new CGXMLReader(selectedFile);
 							writer = new CGExcelWriter();
+							path = mXMLFileChooserInfo.getFileChooserPath();
 						} else {
 							Tools.displayMessage(ApplicationLoader.getInstance().getText("message.warning.xsd"),
 									AlertType.ERROR, LOGGER);
@@ -224,13 +226,14 @@ public class CGMainView extends VBox implements Initializable {
 					if (checkPresenceAgence()) {
 						reader = new CGExcelReader(selectedFile, mExcelCombobox.getValue());
 						writer = new CGXMLWriter();
+						path = mExcelFileChooserInfo.getFileChooserPath();
 					}
 				}
 			}
 			// Lancement de la lecture et de l'écriture.
 			try {
 				if(reader != null && writer != null) {
-					readAndWriteFile(reader, writer);
+					readAndWriteFile(reader, writer, path);
 				} else {
 					LOGGER.debug(ApplicationLoader.getInstance().getText("message.debug.reader.writer"));
 				}
@@ -354,7 +357,7 @@ public class CGMainView extends VBox implements Initializable {
 	 * 
 	 * @throws CGException {@link CGException}.
 	 */
-	protected void readAndWriteFile(ICGReader reader, ICGWriter writer) throws CGException {
+	protected void readAndWriteFile(ICGReader reader, ICGWriter writer, String path) throws CGException {
 
 		LoadingComponent pForm = new LoadingComponent();
 
@@ -366,6 +369,7 @@ public class CGMainView extends VBox implements Initializable {
 				reader.read();
 				// Mise en place des données
 				writer.setDatas(reader.getDatas());
+				writer.setFolderPath(path);
 				// Ecriture du XML
 				writer.write();
 

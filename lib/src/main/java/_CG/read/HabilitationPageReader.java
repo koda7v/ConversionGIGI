@@ -107,14 +107,14 @@ public class HabilitationPageReader extends ACGSheetReader implements ICGSheetRe
 					case ConstantSheetHabilitation.INDEX_REFERENCE_SOPHIA:
 						mHabilitationBuilder.setNumeroSophia(cell);
 						break;
+					case ConstantSheetHabilitation.INDEX_CIVILITE:
+						mPersonneBuilder.setCivilite(cell);
+						break;
 					case ConstantSheetHabilitation.INDEX_NOM:
 						mPersonneBuilder.setNom(cell);
 						break;
 					case ConstantSheetHabilitation.INDEX_PRENOM:
 						mPersonneBuilder.setPrenom(cell);
-						break;
-					case ConstantSheetHabilitation.INDEX_CIVILITE:
-						mPersonneBuilder.setCivilite(cell);
 						break;
 					case ConstantSheetHabilitation.INDEX_TYPE_HABILITATION:
 						mHabilitationBuilder.setTypeHabilitation(cell);

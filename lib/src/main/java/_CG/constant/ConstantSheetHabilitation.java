@@ -10,9 +10,9 @@ public class ConstantSheetHabilitation {
 	 **************************************************************/
 	public static final int INDEX_CODE_SOPHIA = 1;
 	public static final int INDEX_REFERENCE_SOPHIA = 2;
-	public static final int INDEX_NOM = 3;
-	public static final int INDEX_PRENOM = 4;
-	public static final int INDEX_CIVILITE = 5;
+	public static final int INDEX_CIVILITE = 3;
+	public static final int INDEX_NOM = 4;
+	public static final int INDEX_PRENOM = 5;
 	public static final int INDEX_TYPE_HABILITATION = 6;
 	public static final int INDEX_DATE_NAISSANCE = 7;
 	public static final int INDEX_VILLE_NAISSANCE = 8;

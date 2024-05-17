@@ -1,6 +1,5 @@
 package _CG.read;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.ss.usermodel.CellType;
@@ -57,10 +56,7 @@ public abstract class ACGSheetReader {
 	 * @return Identifiant.
 	 */
 	protected String createAndGetPersonneID(PersonneType personneType) {
-		String nomWithoutAccent = StringUtils.stripAccents(personneType.getNom());
-		String prenomWithoutAccent = StringUtils.stripAccents(personneType.getPrenom());
-		String personneID = nomWithoutAccent.toUpperCase() + prenomWithoutAccent.toUpperCase();
-		return personneID;
+		return personneType.getNom().toUpperCase() + personneType.getPrenom().toUpperCase();
 	}
 
 }

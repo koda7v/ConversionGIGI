@@ -19,4 +19,11 @@ public interface ICGWriter {
 	 * @param giraphixDatas {@link GiraphixDatas}.
 	 */
 	void setDatas(GiraphixDatas giraphixDatas);
+
+	/**
+	 * Affectation du chemin où l'on va placer le fichier écrit.
+	 * 
+	 * @param path Chemin vers le dossier.
+	 */
+	void setFolderPath(String path);
 }
