@@ -68,6 +68,9 @@ launch4j {
 	fileDescription = "Conversion de données pour l'outil GIRAPHIX."
 	libraryDir = 'lib'
 	version = cgVersion
+	bundledJrePath = 'jdk-19.0.1'
+    requires64Bit = true
+    jreMinVersion = '11'
 }
 
 java {
@@ -117,7 +120,13 @@ task moveExe(type:Copy) {
     into(layout.buildDirectory.dir("../../package"))
 }
 
-tasks.named("build") { finalizedBy("createExe") }
+task addJreToDistributable(type: Copy) {
+    from zipTree("$buildDir/../../jre/jdk-19.0.1_windows-x64_bin.zip")
+    destinationDir = file("$buildDir/launch4j")
+}
+
+tasks.named("build") { finalizedBy("addJreToDistributable") }
+tasks.named("addJreToDistributable") { finalizedBy("createExe") }
 tasks.named("createExe") { finalizedBy("moveExe") }
 
 jar {
@@ -132,5 +141,4 @@ jar {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
    }
 }
-
 

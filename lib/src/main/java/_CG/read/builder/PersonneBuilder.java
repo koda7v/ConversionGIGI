@@ -92,7 +92,7 @@ public class PersonneBuilder extends ABuilder implements IBuilder {
 	 * @param cell Cellule où l'on va récupérer la'information.
 	 */
 	public void setDateNaissance(HSSFCell cell) {
-		long dateFromCell = getLongDateFromCell(cell);
+		long dateFromCell = getShortDateFromCell(cell);
 		if (dateFromCell != 0) {
 			this.mPersonne.setDateDeNaissance(dateFromCell);
 		}

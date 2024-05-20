@@ -10,8 +10,10 @@ import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.DateUtil;
 
 import _CG.bean.ObjectFactory;
+import _CG.tools.ApplicationLoader;
 
 /**
  * Classe abstraite des différents constructeurs de données pour GIRAPHIX.
@@ -70,23 +72,13 @@ public abstract class ABuilder {
 	 * @return Date convertie en long, 0 si aucune date n'est trouvé.
 	 */
 	protected long getDateFromCell(HSSFCell cell, SimpleDateFormat dateFormat) {
+
+		long dateFromCell = 0;
+
 		String indexRow = Integer.toString(cell.getRowIndex() - 1);
-		String msgError = "Problème rencontré sur la conversion de la date : {0} , à la ligne : {1}.";
+		String msgError = ApplicationLoader.getInstance().getText("message.warning.date");
 
-		if (cell.getCellType() == CellType.NUMERIC) {
-			DataFormatter df = new DataFormatter();
-			String cellValue = df.formatCellValue(cell);
-
-			Date currentDate;
-			try {
-				currentDate = dateFormat.parse(cellValue);
-				if (currentDate != null) {
-					return currentDate.getTime();
-				}
-			} catch (ParseException e) {
-				LOGGER.warn(MessageFormat.format(msgError, cellValue, indexRow), e);
-			}
-		} else if (cell.getCellType() == CellType.STRING) {
+		if (cell.getCellType() == CellType.STRING) {
 			String stringCellValue = cell.getStringCellValue();
 			String[] split = stringCellValue.split("\\n+");
 			if (split.length > 1) {
@@ -94,14 +86,39 @@ public abstract class ABuilder {
 				try {
 					currentDate = dateFormat.parse(split[0]);
 					if (currentDate != null && currentDate.getTime() > 0) {
-						return currentDate.getTime();
+						dateFromCell = currentDate.getTime();
 					}
 				} catch (ParseException e) {
 					LOGGER.warn(MessageFormat.format(msgError, stringCellValue, indexRow), e);
 				}
 			}
+		} else if (DateUtil.isCellDateFormatted(cell) && cell.getDateCellValue() != null) {
+			String cellValue = dateFormat.format(cell.getDateCellValue());
+			Date currentDate = null;
+			try {
+				currentDate = dateFormat.parse(cellValue);
+				if (currentDate != null) {
+					dateFromCell = currentDate.getTime();
+				}
+			} catch (ParseException e) {
+				LOGGER.warn(MessageFormat.format(msgError, cellValue, indexRow), e);
+			}
+		} else if (cell.getCellType() == CellType.NUMERIC) {
+			DataFormatter df = new DataFormatter();
+			df.setDefaultNumberFormat(mShortDateFormat);
+			System.out.println(cell.getDateCellValue());
+			String cellValue = df.formatCellValue(cell);
+			Date currentDate;
+			try {
+				currentDate = dateFormat.parse(cellValue);
+				if (currentDate != null) {
+					dateFromCell = currentDate.getTime();
+				}
+			} catch (ParseException e) {
+				LOGGER.warn(MessageFormat.format(msgError, cellValue, indexRow), e);
+			}
 		}
-		return 0;
+		return dateFromCell;
 	}
 
 	/**
